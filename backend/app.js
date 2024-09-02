@@ -14,10 +14,8 @@ app.use(cors());
 
 // Import routes
 const authRoutes = require('./routes/auth');
-const taskRoutes = require('./routes/task');
 
 // Use routes
 app.use('/api/auth', authRoutes);
-app.use('/api/tasks', taskRoutes);
 
 module.exports = app;
