@@ -14,8 +14,11 @@ app.use(cors());
 
 // Import routes
 const authRoutes = require('./routes/auth');
-
+const authRouter = require('./oauth');
+const requestRouter = require('./routes/requestOAuth');
 // Use routes
 app.use('/api/auth', authRoutes);
+app.use('/oauth', authRouter);
+app.use('/request', requestRouter);
 
 module.exports = app;

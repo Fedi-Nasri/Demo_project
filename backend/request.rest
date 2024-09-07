@@ -28,3 +28,16 @@ Content-Type: application/json
 GET http://localhost:5000/api/auth/users
 Content-Type: application/json
 
+#####
+GET http://localhost:5000/api/auth/users/66d1c4304b557156bf66f4a3
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZDFjNDMwNGI1NTcxNTZiZjY2ZjRhMyIsImlhdCI6MTcyNTQ1NzMwOCwiZXhwIjoxNzI1NDYwOTA4fQ.EInQMYaqk99ecGQK3GuQs5bbN-6-n7ju69mNU-lIjN0
+
+###
+POST http://localhost:5000/api/auth/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZDFjNDMwNGI1NTcxNTZiZjY2ZjRhMyIsImlhdCI6MTcyNTcyMjgwOSwiZXhwIjoxNzI2MzI3NjA5fQ.cykME1ZZpBVg5u15dTiwr-3N_qwk6rSDAwmvkSqS2Us"
+  
+}

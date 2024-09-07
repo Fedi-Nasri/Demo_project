@@ -1,6 +1,18 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const {generateTokens} = require('../middleswares/authMiddleware');
+
+exports.refresheToken= async (req,res)=>{
+  const refreshToken = req.body.refreshToken;
+  jwt.verify(refreshToken, process.env.JWT_SECRET, (err, user) => {
+    if (err) {
+      return res.status(401).json({message:'Unauthorized refrech token '});
+    }
+    const accessToken = jwt.sign({ user }, process.env.JWT_SECRET, { expiresIn: '15m' });
+    res.json({ accessToken });
+  });
+};
 
 exports.register = async (req, res) => {
   const { name, email, password } = req.body;
@@ -11,7 +23,7 @@ exports.register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 12);
     const newUser = await User.create({ name, email, password: hashedPassword });
 
-    const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = generateTokens(user.id);
 
     res.status(201).json({ token, user: newUser });
   } catch (error) {
@@ -28,7 +40,7 @@ exports.login = async (req, res) => {
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
     if (!isPasswordCorrect) return res.status(400).json({ message: "Invalid credentials" });
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = generateTokens(user.id);
 
     res.status(200).json({ token, user });
   } catch (error) {

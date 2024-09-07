@@ -13,7 +13,7 @@ mongoose.connect(uri)
       const dbName = uri.split('/').pop().split('?')[0]; // Extracts the database name
       console.log(`Connected to MongoDB database: ${dbName}`);
     })
-    .catch(err => console.error('Connection error:', err));
+    .catch(err => console.error('Connection error:'));
 
 // Start the server
 const PORT = process.env.PORT || 5000;
