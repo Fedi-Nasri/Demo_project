@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const {generateTokens} = require('../middleswares/authMiddleware');
+const {generateTokens} = require('../middlewares/authMiddleware');
 
 exports.refresheToken= async (req,res)=>{
   const refreshToken = req.body.refreshToken;

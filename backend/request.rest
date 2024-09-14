@@ -42,16 +42,26 @@ Content-Type: application/json
   "password": "123"
 }
 
-######
-GET http://localhost:5000/api/auth/users
-Content-Type: application/json
-
+<!--
+  You must type the Access token after the Bearer ....  you cen get it from the login route 
+  After you type the correct informatio in the user is registered to your database if not 
+  Use the register route  you can get also the assess token from the register route without need for the login  
+-->
 #####
-GET http://localhost:5000/api/auth/users/66d1c4304b557156bf66f4a3
+GET http://localhost:5000/api/users
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZDFjNDMwNGI1NTcxNTZiZjY2ZjRhMyIsImlhdCI6MTcyNTQ1NzMwOCwiZXhwIjoxNzI1NDYwOTA4fQ.EInQMYaqk99ecGQK3GuQs5bbN-6-n7ju69mNU-lIjN0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZTU4NDA3MDhkMTUxNzBiMDMzMDBmMSIsImlhdCI6MTcyNjMyNDE3OCwiZXhwIjoxNzI2MzI1MDc4fQ.lluB9YhwqQ-1ZNiEO1WfcAqUssglw_ZaVRUq4N7HkBc
+#####
+GET http://localhost:5000/api/users/66d1c4304b557156bf66f4a3
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZTU4NDA3MDhkMTUxNzBiMDMzMDBmMSIsImlhdCI6MTcyNjMyNDE3OCwiZXhwIjoxNzI2MzI1MDc4fQ.lluB9YhwqQ-1ZNiEO1WfcAqUssglw_ZaVRUq4N7HkBc
 
-###
+
+<!--
+  You can use this route to refreash the Access token using the refresh Token that you get even from the login route 
+  Or from the register route 
+-->
+####
 POST http://localhost:5000/api/auth/refresh
 Content-Type: application/json
 
