@@ -1,0 +1,6 @@
+components:
+
+    Definition: This directory houses all your reusable React components.
+    
+    Usage: Each component represents a piece of the UI that can be reused across different parts of the application. 
+    For example, buttons, headers, footers, form elements, or modals.

@@ -1,0 +1,7 @@
+styles:
+
+    Definition: This folder includes styling files for your application.
+
+    Usage: Store CSS, SCSS, or styled-components definitions here. 
+            It helps to separate your styling concerns from your components,
+            making it easier to manage and scale your application's look and feel.

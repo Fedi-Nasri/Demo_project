@@ -1,0 +1,6 @@
+pages:
+
+    Definition: This directory holds the different page components or views of your application.
+    
+    Usage: Each file typically represents a complete page or view in your app, like a home page,
+     user profile, or a dashboard. These are often linked to routes.

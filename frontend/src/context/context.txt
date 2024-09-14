@@ -1,0 +1,6 @@
+context:
+
+    Definition: This folder is used for React Context API related files.
+    
+    Usage: Manage global state or shared state that needs to be accessed by multiple components.
+     Contexts are useful for themes, user authentication status, or any global settings.

@@ -1,0 +1,6 @@
+utils:
+
+    Definition: This directory is for utility functions and helpers.
+    
+    Usage: Place reusable utility functions, constants, and helpers here. 
+    For example, you might have functions for formatting dates, validating inputs, or manipulating data

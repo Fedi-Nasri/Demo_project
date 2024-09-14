@@ -1,0 +1,6 @@
+ hooks:
+
+    Definition: Contains custom React hooks that encapsulate reusable logic.
+    
+    Usage: Use this for creating hooks that handle state management, side effects, 
+    or any custom logic that can be reused across multiple components.

@@ -1,0 +1,6 @@
+services:
+
+    Definition: Contains files for handling business logic and API requests.
+    
+    Usage: Place functions or classes here that interact with your backend services or third-party APIs. For instance,
+     you might have a service for managing user authentication or fetching data from the server.

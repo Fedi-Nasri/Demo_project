@@ -1,0 +1,7 @@
+assets:
+
+    Definition: This folder usually contains static files such as images, fonts,
+     icons, and other media assets that are used throughout the application.
+
+    Usage: Store files that need to be served to the client as-is, like logo images, background textures,
+     or custom icons.
