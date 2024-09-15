@@ -1,4 +1,18 @@
 const User = require('../models/User');
+const userService = require('../services/usersServices');
+
+exports.getUserNew = async (req,res) => {
+  try {
+      const user = await userService.getUser(req.params.id);
+      res.status(200).json(user);
+  } catch (error) {
+      console.error('Error:', error);
+      if (error.message === "User not found !") {
+          return res.status(404).json({ message: error.message });
+      }
+      res.status(500).json({ message: 'Something went wrong' });
+  }
+};
 
 exports.getUser = async (req, res) => {
     try {
@@ -10,6 +24,7 @@ exports.getUser = async (req, res) => {
       res.status(500).json({ message: "Something went wrong" });
     }
   };
+
   exports.getAllUsers = async (req, res) => {
     try {
       const users = await User.find();

@@ -1,4 +1,4 @@
-const authRoutes = require('../routes/auth');
+const authRoutes = require('../routes/authRoute');
 const authRouter = require('../oauth');
 const requestRouter = require('../routes/requestOAuth');
 const usersRoute = require('../routes/usersRoute');

@@ -34,6 +34,15 @@ Content-Type: application/json
   "password": "456"
 }
 ######
+
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "Poppy@gmail.com",
+  "password": "456"
+}
+######
 POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
@@ -50,13 +59,13 @@ Content-Type: application/json
 #####
 GET http://localhost:5000/api/users
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZTU4NDA3MDhkMTUxNzBiMDMzMDBmMSIsImlhdCI6MTcyNjMyNDE3OCwiZXhwIjoxNzI2MzI1MDc4fQ.lluB9YhwqQ-1ZNiEO1WfcAqUssglw_ZaVRUq4N7HkBc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZTQ2ZDgzMGIzNmRiMTQ0ZTM1ZDhiNiIsImlhdCI6MTcyNjM5ODYxMywiZXhwIjoxNzI2Mzk5NTEzfQ.NqnBHsULita0lMdaksF1F_T00OkRLCyfc4_egyZVG04
 #####
-GET http://localhost:5000/api/users/66d1c4304b557156bf66f4a3
+GET http://localhost:5000/api/users/66d1c1d26703f406ca4ef66f
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZTU4NDA3MDhkMTUxNzBiMDMzMDBmMSIsImlhdCI6MTcyNjMyNDE3OCwiZXhwIjoxNzI2MzI1MDc4fQ.lluB9YhwqQ-1ZNiEO1WfcAqUssglw_ZaVRUq4N7HkBc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZTQ2ZDgzMGIzNmRiMTQ0ZTM1ZDhiNiIsImlhdCI6MTcyNjM5ODYxMywiZXhwIjoxNzI2Mzk5NTEzfQ.NqnBHsULita0lMdaksF1F_T00OkRLCyfc4_egyZVG04
 
-
+####
 <!--
   You can use this route to refreash the Access token using the refresh Token that you get even from the login route 
   Or from the register route 
