@@ -1,11 +1,9 @@
 const authRoutes = require('../routes/authRoute');
-const authRouter = require('../oauth');
-const requestRouter = require('../routes/requestOAuth');
 const usersRoute = require('../routes/usersRoute');
+const googleOAuth2 = require('./GoogleOAuthRoute')
 // Use routes
 module.exports = (app)=>{
     app.use('/api/auth', authRoutes);
-    app.use('/oauth', authRouter);
-    app.use('/request', requestRouter);
+    app.use('/OAuth2',googleOAuth2);
     app.use('/api/users',usersRoute)
 }

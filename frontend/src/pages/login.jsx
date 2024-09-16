@@ -5,6 +5,7 @@ import { useNavigate  } from 'react-router-dom';
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loadingOAuth, setLoadingOAuth] = useState(false);
   const navigate = useNavigate ();
 
   const handleLogin = async (e) => {
@@ -28,10 +29,23 @@ const LoginPage = () => {
     } catch (error) {
       console.error('Login failed', error);
     }
+  };
 
+  const handleLogin2 = async (e) => {
+    e.preventDefault();
+    setLoadingOAuth(true);
+    try {
+      const res = await axios.get(' http://localhost:5000/OAuth2/request');
+      console.log(res.data);
+      const data = res.data
+      window.location.href = data.url ;
+    } catch (error) {
+      console.error('Login failed', error);
+    }
   };
 
   return (
+  <>
     <form onSubmit={handleLogin}>
       <h2>Login</h2>
       <div>
@@ -52,8 +66,14 @@ const LoginPage = () => {
           required
         />
       </div>
-      <button type="submit">Login</button>
+      <button type="submit">Login email</button>
     </form>
+        <form onSubmit={handleLogin2}>
+        <button type="submit" disabled={loadingOAuth}>
+          {loadingOAuth ? 'Redirecting...' : 'Login with Google'}
+        </button>
+      </form>
+      </>
   );
 };
 
