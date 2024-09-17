@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState,useContext  } from 'react';
+import { useLocation,useNavigate  } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 const Dashboard = () => {
   const location = useLocation();
   const { username, email, token } = location.state || {}; // Access state safely
   const [userData, setUserData] = useState(null);
   const [token2, setToken] = useState('');
+  const { authState } = useContext(AuthContext);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
@@ -25,8 +29,13 @@ const Dashboard = () => {
         }
     }
 }, [location.search]);
-if (!userData) return <p>didn t use the GOOGLE OAUTH2 NAHH  methodeeeee AAAAAAAA</p>;
-  
+//if (!userData) return <p>didn t use the GOOGLE OAUTH2 NAHH  methodeeeee AAAAAAAA</p>;
+    
+  if (!authState.token) {
+    navigate('/login');
+    return null;
+  }
+
   return (<>
     <h2>Dashboard email login</h2>
     {username ? (<div>
@@ -38,14 +47,16 @@ if (!userData) return <p>didn t use the GOOGLE OAUTH2 NAHH  methodeeeee AAAAAAAA
     </div>
       ):  <p> This methode did not been used.</p>
     }
+  <h2>Dashboard  login With OAuth2 google </h2>
+    {authState.user ==='username' ? (  
+      <p>didn t use the GOOGLE OAUTH2 NAHH  methodeeeee AAAAAAAA</p>   
+    ):<div>
+    <h2>Welcome, {authState.user}</h2>
+    <p>assecc token : {authState.token}</p>
+  </div>
+  }
 
-    <div>
-    <h2>Dashboard google login</h2>
-    <p>Username: {userData.name}</p>
-    <p>Email: {userData.email}</p>
-    <p>Password: {userData.password} ||| POV:  dont worry your password is secure  </p>
-    <p>Access Token: {token2}</p>
-</div>
+    
 </>
   );
 };

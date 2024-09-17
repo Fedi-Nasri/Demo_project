@@ -4,12 +4,12 @@ dotenv.config(); // Load environment variables from .env file
 const {OAuth2Client} = require('google-auth-library');
 const {addUser} = require('../services/usersServices');
 
-exports.getTokenGoogle = async (req, res, next) => {
+exports.getGoogleAuthUrl = async (req, res, next) => {
 
     res.header("Access-Control-Allow-Origin", 'http://localhost:3000');
     res.header("Access-Control-Allow-Credentials", 'true');
     res.header("Referrer-Policy","no-referrer-when-downgrade");
-    const redirectURL = 'http://localhost:5000/OAuth2';
+    const redirectURL = 'http://localhost:3000/OAuth2/google/callback';
 
     const oAuth2Client = new OAuth2Client(
         process.env.CLIENT_ID,
@@ -35,7 +35,7 @@ async function getUserData(access_token) {
     
     //console.log('response',response);
     const data = await response.json();
-    console.log('data',data);
+    //console.log('data',data);
     const userInfo ={
         email : data.email,
         name : data.name, 
@@ -46,12 +46,16 @@ async function getUserData(access_token) {
     return userInfo;
 }; 
 
-exports.getInfoGoogle = async (req,res) =>{
-    const code = req.query.code;
-
+exports.googleOAuthCallback  = async (req,res) =>{
+    const {code} = req.body;
+    console.log("code is : ",req.body)
+    if (!code) {
+        return res.status(400).send('Authorization code not provided');
+    }
     console.log(code);
+
     try {
-        const redirectURL = "http://localhost:5000/OAuth2"
+        const redirectURL = "http://localhost:3000/OAuth2/google/callback"
         const oAuth2Client = new OAuth2Client(
             process.env.CLIENT_ID,
             process.env.CLIENT_SECRET,
@@ -76,15 +80,15 @@ exports.getInfoGoogle = async (req,res) =>{
         const encodedUserData = encodeURIComponent(JSON.stringify(userinfo));
         
         // Redirect to the dashboard with access token and encoded user data
-        res.redirect(`http://localhost:3000/dashboard?access_token=${access_token}&user_data=${encodedUserData}`); 
+        {/* res.redirect(`http://localhost:3000/dashboard?access_token=${access_token}&user_data=${encodedUserData}`); */}
         
         // Send JSON response with redirect URL
-        {/*res.json({
+        res.json({
             //redirectUrl: 'http://localhost:3000/oauth-callback', // The URL to redirect to
             accessToken: access_token,
-            user: userinfo
+            user: userinfo.name
         });
-        */}
+        
     } catch (err) {
         console.log('Error logging in with OAuth2 user', err);
         res.status(500).send('OAuth callback failed');

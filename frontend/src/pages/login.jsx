@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState,useContext} from 'react';
 import axios from 'axios';
 import { useNavigate  } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loadingOAuth, setLoadingOAuth] = useState(false);
   const navigate = useNavigate ();
+  const { login } = useContext(AuthContext);
+
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -15,8 +18,11 @@ const LoginPage = () => {
         email,
         password
       });
+      
       // Assuming the response contains { token, user: { username, email } }
       const { token, user } = response.data;
+
+      //login(token,user.name);
 
       // Pass the user data as props to the Dashboard component
       navigate('/dashboard', { 
@@ -34,15 +40,14 @@ const LoginPage = () => {
   const handleLogin2 = async (e) => {
     e.preventDefault();
     setLoadingOAuth(true);
-    try {
-      const res = await axios.get(' http://localhost:5000/OAuth2/request');
-      console.log(res.data);
-      const data = res.data
-      window.location.href = data.url ;
-    } catch (error) {
-      console.error('Login failed', error);
-    }
-  };
+      try {
+        const res = await axios.get(' http://localhost:5000/OAuth2/request');
+        console.log(res.data);
+        window.location.href = res.data.url ;
+      } catch (error) {
+        console.error('Login failed', error);
+      }
+    };
 
   return (
   <>
